@@ -12,6 +12,8 @@ final class PokedexViewController: BaseViewController {
         static let offsets: CGFloat = 20.0
     }
 
+    private let backButton = NavigationButton()
+
     private let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -34,8 +36,7 @@ final class PokedexViewController: BaseViewController {
 
     private var data: [MainResponse] = []
 
-
-    var presenter: MainPresenterProtocol?
+    var presenter: PokedexPresenterProtocol?
 
     // MARK: - Lifecycle
     init() {
@@ -51,17 +52,22 @@ final class PokedexViewController: BaseViewController {
         super.viewDidLoad()
 
         configureUI()
+        setupCallbackAction()
         presenter?.onViewDidLoad()
     }
 
-    func setPresenter(_ presenter: MainPresenterProtocol) {
+    func setPresenter(_ presenter: PokedexPresenterProtocol) {
         self.presenter = presenter
     }
 }
 
 private extension PokedexViewController {
     func configureUI() {
-        view.backgroundColor = .blue
+        showNavigationBar()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: backButton)
+
+//        view.backgroundColor = .blue
 
         view.addSubview(contentView.prepareForAutoLayout())
         contentView.pinEdgesToSuperviewEdges(excluding: .top)
@@ -80,7 +86,6 @@ private extension PokedexViewController {
         collectionView.rightAnchor ~= contentView.rightAnchor
         collectionView.bottomAnchor ~= contentView.bottomAnchor
 
-
         configureCollectionView()
     }
 
@@ -88,6 +93,12 @@ private extension PokedexViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: "MainCell")
+    }
+
+    func setupCallbackAction() {
+        backButton.callbackAction = { [weak self] in
+            self?.presenter?.handleBackTap()
+        }
     }
 }
 
@@ -103,7 +114,8 @@ extension PokedexViewController: UICollectionViewDataSource {
         return 20 // data.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCell", for: indexPath)
 
 //        let product = data[indexPath.row]
@@ -120,8 +132,9 @@ extension PokedexViewController: UICollectionViewDataSource {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate {
+extension PokedexViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.handlePokemonTap()
 //        let product = data[indexPath.row]
 //
 //        presenter?.handleProductOpened(productId: product.id)
@@ -134,8 +147,8 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension PokedexViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let lay = collectionViewLayout as! UICollectionViewFlowLayout
-        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+        let lay = collectionViewLayout as? UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 2 - (lay?.minimumInteritemSpacing ?? 20.0)
 
         return CGSize(width:widthPerItem, height: 150.0)
     }

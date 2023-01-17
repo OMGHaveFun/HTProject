@@ -1,5 +1,5 @@
 //
-//  MainFlowCoordinator.swift
+//  PokedexFlowCoordinator.swift
 //  HTProject
 //
 //  Created by Aliaksandr Yalchyk on 17/01/2023.
@@ -7,93 +7,54 @@
 
 import UIKit
 
-protocol MainFlowCoordinatorDelegate: AnyObject {
-    func userPerformedDetail()
+protocol PokedexFlowCoordinatorDelegate: AnyObject {
+    func userPerformedInit(coordinator: CoordinatorProtocol)
 }
 
-final class MainFlowCoordinator: CoordinatorProtocol {
+final class PokedexFlowCoordinator: CoordinatorProtocol {
     var childCoordinators: [CoordinatorProtocol] = []
     let navigationController: UINavigationController
-    weak var delegate: MainFlowCoordinatorDelegate?
+    weak var delegate: PokedexFlowCoordinatorDelegate?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
     func start() {
-        showFeedScene()
+        showPokedexScene()
     }
 
     func startDetail() {
-        setDetailScene()
+        showPokedexDetailScene()
     }
 }
 
-private extension MainFlowCoordinator {
-    func showFeedScene() {
-//        let link = LoginLinkModel(text: AuthText.Login.offer.string(), linkText: AuthText.Login.link.string())
-//
-//        let model = LoginModel(title: AuthText.Login.title.string(),
-//                               text: AuthText.Login.text.string(),
-//                               link: link)
-//
-//        let controller = LoginAssembly.build(delegate: self, model: model)
-//
-//        navigationController.setViewControllers([controller], animated: true)
+private extension PokedexFlowCoordinator {
+    func showPokedexScene() {
+        let model = PokedexModel()
+        let controller = PokedexAssembly.build(delegate: self, model: model)
+        navigationController.setViewControllers([controller], animated: true)
     }
 
-    func setDetailScene() {
-//        navigationController.pushViewController(controller, animated: true)
+    func showPokedexDetailScene() {
+        let model = PokedexDetailModel()
+        let controller = PokedexDetailAssembly.build(delegate: self, model: model)
+        navigationController.pushViewController(controller, animated: true)
     }
 }
 
-extension AuthFlowCoordinator: LoginPresenterDelegate {
-    func userNeedsToPin(model: LoginModel) {
-        showPinScene(model: model)
+extension PokedexFlowCoordinator: PokedexPresenterDelegate {
+    func userNeedsToInit() {
+        delegate?.userPerformedInit(coordinator: self)
+    }
+
+    func userNeedsToDetail() {
+        startDetail()
     }
 }
 
-extension AuthFlowCoordinator: PinPresenterDelegate {
-    func userNeedsToMain() {
-        showMainScene()
-    }
-
-    func userNeedsToForm(model: PinModel) {
-        showFormScene(model: model)
-//        showStartScene()
-    }
-
-    func userNeedsToTopicsFromPin() {
-        showTopicsScene()
-    }
-}
-
-extension AuthFlowCoordinator: FormPresenterDelegate {
-    func userNeedsToTopics() {
-        showTopicsScene()
-    }
-}
-
-extension AuthFlowCoordinator: TopicsPresenterDelegate {
-    func userNeedsToExpertise(model: TopicsModel) {
-        showExpertiseScene(model: model)
-    }
-}
-
-extension AuthFlowCoordinator: ExpertisePresenterDelegate {
-    func userNeedsToStart() {
-        showStartScene()
-    }
-}
-
-extension AuthFlowCoordinator: StartPresenterDelegate {
-    func userNeedsToMainAfterRegister() {
-        showMainSceneAfterRegister()
-    }
-}
-
-extension AuthFlowCoordinator: OnboardingPresenterDelegate {
-    func handleSkipButtonTap() {
-        showMainSceneAfterRegister()
+extension PokedexFlowCoordinator: PokedexDetailPresenterDelegate {
+    func userNeedsBack() {
+        popViewController(animated: true)
     }
 }

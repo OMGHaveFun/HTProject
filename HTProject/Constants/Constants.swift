@@ -5,4 +5,6 @@
 //  Created by Aliaksandr Yalchyk on 16/01/2023.
 //
 
-import Foundation
+struct Routes {
+    static let baseURL = "https://pokeapi.co/"
+}

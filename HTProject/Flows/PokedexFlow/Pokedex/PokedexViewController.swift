@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  PokedexViewController.swift
 //  HTProject
 //
 //  Created by Aliaksandr Yalchyk on 16/01/2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainViewController: BaseViewController {
+final class PokedexViewController: BaseViewController {
     private enum Constants {
         static let offsets: CGFloat = 20.0
     }
@@ -32,7 +32,7 @@ final class MainViewController: BaseViewController {
         return collectionView
     }()
 
-    private var data: [FeedResponse] = []
+    private var data: [MainResponse] = []
 
 
     var presenter: MainPresenterProtocol?
@@ -59,7 +59,7 @@ final class MainViewController: BaseViewController {
     }
 }
 
-private extension MainViewController {
+private extension PokedexViewController {
     func configureUI() {
         view.backgroundColor = .blue
 
@@ -71,36 +71,52 @@ private extension MainViewController {
         titleLabel.topAnchor ~= contentView.topAnchor + Constants.offsets
         titleLabel.leftAnchor ~= contentView.leftAnchor + Constants.offsets
         titleLabel.rightAnchor ~= contentView.rightAnchor - Constants.offsets
+
+        titleLabel.text = "Pokedex"
+
+        contentView.addSubview(collectionView.prepareForAutoLayout())
+        collectionView.topAnchor ~= titleLabel.bottomAnchor + Constants.offsets
+        collectionView.leftAnchor ~= contentView.leftAnchor
+        collectionView.rightAnchor ~= contentView.rightAnchor
+        collectionView.bottomAnchor ~= contentView.bottomAnchor
+
+
+        configureCollectionView()
+    }
+
+    func configureCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(MainCell.self, forCellWithReuseIdentifier: "MainCell")
     }
 }
 
-extension MainViewController: MainViewProtocol {
+extension PokedexViewController: PokedexViewProtocol {
 }
 
-extension MainViewController: UICollectionViewDataSource {
+extension PokedexViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return 20 // data.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCell", for: indexPath)
 
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath)
 //        let product = data[indexPath.row]
 //        presenter?.handleImage(productId: product.id)
-//        if let productCell = cell as? ProductCell {
-//            var productModel = ProductCell.Model(item: product)
+        if let mainCell = cell as? MainCell {
+            var mainModel = MainCell.Model(item: MainResponse())
 //            productModel.likeCallbackAction = { [weak self] product in
 //                self?.likePressed(productId: product.item.id, isActive: product.item.isLike)
 //            }
-//            productCell.model = productModel
-//        }
-//
-//        return cell
+            mainCell.model = mainModel
+        }
+
+        return cell
     }
 }
 
@@ -116,9 +132,12 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
-extension MainViewController: UICollectionViewDelegateFlowLayout {
+extension PokedexViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 184.0, height: 264.0)
+        let lay = collectionViewLayout as! UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+
+        return CGSize(width:widthPerItem, height: 150.0)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

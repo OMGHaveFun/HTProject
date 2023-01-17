@@ -1,5 +1,5 @@
 //
-//  MainAssembly.swift
+//  PokedexAssembly.swift
 //  HTProject
 //
 //  Created by Aliaksandr Yalchyk on 16/01/2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class MainAssembly {
-    static func build(delegate: MainPresenterDelegate?) -> UIViewController {
-        let controller = MainViewController()
+final class PokedexAssembly {
+    static func build(delegate: PokedexPresenterDelegate?, model: PokedexModel) -> UIViewController {
+        let controller = PokedexViewController()
 
-        let presenter = MainPresenter(view: controller)
+        let presenter = PokedexPresenter(view: controller, model: model)
         presenter.delegate = delegate
         controller.setPresenter(presenter)
 

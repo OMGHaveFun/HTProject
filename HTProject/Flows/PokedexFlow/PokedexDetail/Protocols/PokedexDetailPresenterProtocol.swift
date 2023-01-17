@@ -5,4 +5,7 @@
 //  Created by Aliaksandr Yalchyk on 17/01/2023.
 //
 
-import Foundation
+protocol PokedexDetailPresenterProtocol: AnyObject {
+    func onViewDidLoad()
+    func handleBackTap()
+}

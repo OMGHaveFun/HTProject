@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppCoordinatorProtocol: CoordinatorProtocol {
-    func showMainFlow()
+    func showPokedexFlow()
 }
 
 final class AppCoordinator: AppCoordinatorProtocol {
@@ -23,16 +23,32 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
 
     func start() {
-        showMainFlow()
+        showInitFlow()
     }
 
-    internal func showMainFlow() {
-        let controller = MainAssembly.build(delegate: self)
+    private func showInitFlow() {
+        let model = InitModel()
+        let controller = InitAssembly.build(delegate: self, model: model)
         navigationController.pushViewController(controller, animated: true)
+    }
+
+    func showPokedexFlow() {
+        let pokedexFlowCoordinator = PokedexFlowCoordinator(navigationController: navigationController)
+        pokedexFlowCoordinator.delegate = self
+        addChildCoordinator(pokedexFlowCoordinator)
+        pokedexFlowCoordinator.start()
     }
 }
 
-extension AppCoordinator: MainPresenterDelegate {
-    func userNeedsToDetail() {
+extension AppCoordinator: InitPresenterDelegate {
+    func userNeedsToPokedex() {
+        showPokedexFlow()
+    }
+}
+
+extension AppCoordinator: PokedexFlowCoordinatorDelegate {
+    func userPerformedInit(coordinator: CoordinatorProtocol) {
+        removeChildCoordinator(coordinator)
+        showInitFlow()
     }
 }

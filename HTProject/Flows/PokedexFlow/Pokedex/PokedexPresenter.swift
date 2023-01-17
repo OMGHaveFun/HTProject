@@ -1,5 +1,5 @@
 //
-//  MainPresenter.swift
+//  PokedexPresenter.swift
 //  HTProject
 //
 //  Created by Aliaksandr Yalchyk on 16/01/2023.
@@ -7,21 +7,35 @@
 
 import Foundation
 
-protocol MainPresenterDelegate: AnyObject {
+protocol PokedexPresenterDelegate: AnyObject {
+    func userNeedsToInit()
     func userNeedsToDetail()
 }
 
-final class MainPresenter {
-    weak var delegate: MainPresenterDelegate?
-    weak var view: MainViewProtocol?
+final class PokedexPresenter {
+    weak var delegate: PokedexPresenterDelegate?
+    weak var view: PokedexViewProtocol?
 
-    init(view: MainViewProtocol? = nil) {
+    private var model: PokedexModel
+
+    init(view: PokedexViewProtocol?, model: PokedexModel) {
         self.view = view
+        self.model = model
     }
 }
 
-extension MainPresenter: MainPresenterProtocol {
+extension PokedexPresenter: PokedexPresenterProtocol {
     func onViewDidLoad() {
+    }
 
+    func handleBackTap() {
+        delegate?.userNeedsToInit()
+    }
+
+    func handleMenuTap() {
+    }
+
+    func handlePokemonTap() {
+        delegate?.userNeedsToDetail()
     }
 }

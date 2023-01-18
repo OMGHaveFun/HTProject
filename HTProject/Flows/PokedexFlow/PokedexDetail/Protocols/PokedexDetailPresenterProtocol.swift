@@ -7,5 +7,7 @@
 
 protocol PokedexDetailPresenterProtocol: AnyObject {
     func onViewDidLoad()
+    func onViewWillAppear()
+
     func handleBackTap()
 }

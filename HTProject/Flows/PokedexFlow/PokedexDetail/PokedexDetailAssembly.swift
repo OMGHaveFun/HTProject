@@ -8,10 +8,12 @@
 import UIKit
 
 final class PokedexDetailAssembly {
-    static func build(delegate: PokedexDetailPresenterDelegate?, model: PokedexDetailModel) -> UIViewController {
+    static func build(delegate: PokedexDetailPresenterDelegate?,
+                      model: PokedexDetailModel,
+                      networkManager: PokedexManagerProtocol) -> UIViewController {
         let controller = PokedexDetailViewController()
 
-        let presenter = PokedexDetailPresenter(view: controller, model: model)
+        let presenter = PokedexDetailPresenter(view: controller, model: model, networkManager: networkManager)
         presenter.delegate = delegate
         controller.setPresenter(presenter)
 

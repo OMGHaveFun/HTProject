@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  HTProject
+
+  Created by Aliaksandr Yalchyk on 18/01/2023.
+  
+*/
+
+// MARK: - Pokedex Flow
+"Pokedex.Title" = "Pokedex";
+
+"Pokedex.Menu.Alert.Title" = "Menu";
+"Pokedex.Menu.Alert.Message" = "In progress... ";
+"Pokedex.Menu.Alert.Button.Title" = "Ok";

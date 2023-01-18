@@ -9,6 +9,7 @@ import UIKit
 
 enum NavigationButtonType {
     case back
+    case backLight
     case menu
 
     var backgroundColor: UIColor {
@@ -27,28 +28,30 @@ enum NavigationButtonType {
 
     var tintColor: UIColor? {
         switch self {
-        case .back:
-            return .blue
-        default:
-            return .clear
+        case .back, .menu:
+            return .black
+        case .backLight:
+            return .white
         }
     }
 
     var normalImage: UIImage? {
         switch self {
-        case .back:
-            return UIImage(systemName: "arrow.backward")
+        case .back, .backLight:
+            return UIImage(systemName: "arrow.left",
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .light))
         case .menu:
-            return UIImage(named: "navigation_button_menu")
+            return UIImage(systemName: "line.3.horizontal")
         }
     }
 
     var selectedImage: UIImage? {
         switch self {
-        case .back:
-            return UIImage(systemName: "arrow.backward")
+        case .back, .backLight:
+            return UIImage(systemName: "arrow.left",
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .light))
         case .menu:
-            return UIImage(named: "navigation_button_menu")
+            return UIImage(systemName: "line.3.horizontal")
         }
     }
 }

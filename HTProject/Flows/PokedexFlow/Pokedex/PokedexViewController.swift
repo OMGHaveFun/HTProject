@@ -10,9 +10,16 @@ import UIKit
 final class PokedexViewController: BaseViewController {
     private enum Constants {
         static let offsets: CGFloat = 20.0
+        static let cellHeight: CGFloat = 120.0
     }
 
     private let backButton = NavigationButton()
+
+    private let menuButton: NavigationButton = {
+        let button = NavigationButton()
+        button.style = .menu
+        return button
+    }()
 
     private let contentView: UIView = {
         let view = UIView()
@@ -34,7 +41,7 @@ final class PokedexViewController: BaseViewController {
         return collectionView
     }()
 
-    private var data: [MainResponse] = []
+    private var data: [PokemonListItemResponse] = []
 
     var presenter: PokedexPresenterProtocol?
 
@@ -56,6 +63,12 @@ final class PokedexViewController: BaseViewController {
         presenter?.onViewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        presenter?.onViewWillAppear()
+    }
+
     func setPresenter(_ presenter: PokedexPresenterProtocol) {
         self.presenter = presenter
     }
@@ -65,9 +78,7 @@ private extension PokedexViewController {
     func configureUI() {
         showNavigationBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: backButton)
-
-//        view.backgroundColor = .blue
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
 
         view.addSubview(contentView.prepareForAutoLayout())
         contentView.pinEdgesToSuperviewEdges(excluding: .top)
@@ -78,12 +89,10 @@ private extension PokedexViewController {
         titleLabel.leftAnchor ~= contentView.leftAnchor + Constants.offsets
         titleLabel.rightAnchor ~= contentView.rightAnchor - Constants.offsets
 
-        titleLabel.text = "Pokedex"
-
         contentView.addSubview(collectionView.prepareForAutoLayout())
         collectionView.topAnchor ~= titleLabel.bottomAnchor + Constants.offsets
-        collectionView.leftAnchor ~= contentView.leftAnchor
-        collectionView.rightAnchor ~= contentView.rightAnchor
+        collectionView.leftAnchor ~= contentView.leftAnchor + Constants.offsets
+        collectionView.rightAnchor ~= contentView.rightAnchor - Constants.offsets
         collectionView.bottomAnchor ~= contentView.bottomAnchor
 
         configureCollectionView()
@@ -92,17 +101,36 @@ private extension PokedexViewController {
     func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(MainCell.self, forCellWithReuseIdentifier: "MainCell")
+        collectionView.register(PokedexCell.self, forCellWithReuseIdentifier: "PokedexCell")
     }
 
     func setupCallbackAction() {
         backButton.callbackAction = { [weak self] in
             self?.presenter?.handleBackTap()
         }
+
+        menuButton.callbackAction = { [weak self] in
+            self?.presenter?.handleMenuTap()
+        }
     }
 }
 
 extension PokedexViewController: PokedexViewProtocol {
+    func display(model: PokedexModel) {
+        titleLabel.text = model.title
+    }
+
+    func displayFeed(_ feed: [PokemonListItemResponse]) {
+        data = feed
+        collectionView.reloadData()
+    }
+
+    func displayMenuAlert(model: PokedexAlertModel) {
+        let alert = UIAlertController(title: model.title, message: model.message, preferredStyle: .alert)
+        let action = UIAlertAction(title: model.buttonTitle, style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
 }
 
 extension PokedexViewController: UICollectionViewDataSource {
@@ -111,21 +139,17 @@ extension PokedexViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20 // data.count
+        return data.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokedexCell", for: indexPath)
 
-//        let product = data[indexPath.row]
-//        presenter?.handleImage(productId: product.id)
-        if let mainCell = cell as? MainCell {
-            var mainModel = MainCell.Model(item: MainResponse())
-//            productModel.likeCallbackAction = { [weak self] product in
-//                self?.likePressed(productId: product.item.id, isActive: product.item.isLike)
-//            }
-            mainCell.model = mainModel
+        let item = data[indexPath.row]
+        if let pokedexCell = cell as? PokedexCell {
+            let model = PokedexCell.Model(item: item)
+            pokedexCell.model = model
         }
 
         return cell
@@ -135,29 +159,29 @@ extension PokedexViewController: UICollectionViewDataSource {
 extension PokedexViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.handlePokemonTap()
-//        let product = data[indexPath.row]
-//
-//        presenter?.handleProductOpened(productId: product.id)
-//
-//        let controller = FeedDetailAssembly.build(model: product, entryPoint: .feed)
-//        controller.modalPresentationStyle = .fullScreen
-//        present(controller, animated: true)
     }
 }
 
 extension PokedexViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let lay = collectionViewLayout as? UICollectionViewFlowLayout
-        let widthPerItem = collectionView.frame.width / 2 - (lay?.minimumInteritemSpacing ?? 20.0)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let layout = collectionViewLayout as? UICollectionViewFlowLayout
+        let minimumSpacing = layout?.minimumInteritemSpacing ?? Constants.offsets
+        let widthPerItem = collectionView.frame.width / 2 - minimumSpacing
 
-        return CGSize(width:widthPerItem, height: 150.0)
+        return CGSize(width:widthPerItem, height: Constants.cellHeight)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.0
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.offsets
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.0
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.offsets
     }
 }

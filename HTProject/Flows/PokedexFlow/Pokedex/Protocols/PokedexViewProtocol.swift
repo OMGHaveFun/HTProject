@@ -6,4 +6,7 @@
 //
 
 protocol PokedexViewProtocol: AnyObject {
+    func display(model: PokedexModel)
+    func displayFeed(_ feed: [PokemonListItemResponse])
+    func displayMenuAlert(model: PokedexAlertModel)
 }

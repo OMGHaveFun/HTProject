@@ -7,4 +7,6 @@
 
 import Foundation
 
-struct PokedexDetailModel {}
+struct PokedexDetailModel {
+    let pokemonId: Int
+}

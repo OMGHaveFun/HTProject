@@ -1,13 +1,13 @@
 //
-//  MainCell+Model.swift
+//  PokedexCell+Model.swift
 //  HTProject
 //
 //  Created by Aliaksandr Yalchyk on 16/01/2023.
 //
 
-extension MainCell {
+extension PokedexCell {
     struct Model {
-        let item: MainResponse
+        let item: PokemonListItemResponse
         var callbackAction: ((Model) -> Void)?
     }
 }

@@ -6,4 +6,6 @@
 //
 
 protocol PokedexDetailViewProtocol: AnyObject {
+    func display(model: PokedexDetailModel)
+    func display(_ pokemon: PokemonResponse)
 }

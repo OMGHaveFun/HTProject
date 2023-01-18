@@ -10,12 +10,10 @@ import UIKit
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureUI()
     }
 
     // MARK: Public methods
-
     func hideNavigationBar() {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -26,10 +24,6 @@ class BaseViewController: UIViewController {
 
     // MARK: Private methods
     private func configureUI() {
-        UINavigationBar.appearance().tintColor = .green
-//        UIToolbar.appearance().tintColor = .green
-//        UITabBar.appearance().tintColor = .green
-
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isTranslucent = true
 

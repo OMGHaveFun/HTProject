@@ -12,7 +12,11 @@ final class PokedexDetailViewController: BaseViewController {
         static let offsets: CGFloat = 20.0
     }
 
-    private let backButton = NavigationButton()
+    private let backButton: NavigationButton = {
+        let button = NavigationButton()
+        button.style = .backLight
+        return button
+    }()
 
     private let contentView: UIView = {
         let view = UIView()
@@ -46,6 +50,12 @@ final class PokedexDetailViewController: BaseViewController {
         presenter?.onViewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        presenter?.onViewWillAppear()
+    }
+
     func setPresenter(_ presenter: PokedexDetailPresenterProtocol) {
         self.presenter = presenter
     }
@@ -55,9 +65,8 @@ private extension PokedexDetailViewController {
     func configureUI() {
         showNavigationBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: backButton)
 
-//        view.backgroundColor = .blue
+        view.backgroundColor = .green
 
         view.addSubview(contentView.prepareForAutoLayout())
         contentView.pinEdgesToSuperviewEdges(excluding: .top)
@@ -67,8 +76,6 @@ private extension PokedexDetailViewController {
         titleLabel.topAnchor ~= contentView.topAnchor + Constants.offsets
         titleLabel.leftAnchor ~= contentView.leftAnchor + Constants.offsets
         titleLabel.rightAnchor ~= contentView.rightAnchor - Constants.offsets
-
-        titleLabel.text = "PokedexDetail"
     }
 
     func setupCallbackAction() {
@@ -79,4 +86,10 @@ private extension PokedexDetailViewController {
 }
 
 extension PokedexDetailViewController: PokedexDetailViewProtocol {
+    func display(model: PokedexDetailModel) {
+        titleLabel.text = "PokedexDetail"
+    }
+
+    func display(_ pokemon: PokemonResponse) {
+    }
 }

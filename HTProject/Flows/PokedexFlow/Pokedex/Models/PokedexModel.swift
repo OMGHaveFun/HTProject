@@ -7,4 +7,13 @@
 
 import Foundation
 
-struct PokedexModel {}
+struct PokedexModel {
+    let title: String
+    let alert: PokedexAlertModel
+}
+
+struct PokedexAlertModel {
+    let title: String?
+    let message: String?
+    let buttonTitle: String
+}

@@ -6,7 +6,8 @@ Init
 - [x] Init Coordinators
 - [x] Init Flows with base logic
 - [x] Init Custom UI Framework
-- [ ] Add Network Layer (Moya)
+- [x] Add Network Layer (Moya)
+- [x] Add Localizable
 - [ ] Finalize Pokedex UI/UX
 - [ ] Finalize Pokedex Detail UI/UX
 - [ ] Add Network Layer (URLSession)

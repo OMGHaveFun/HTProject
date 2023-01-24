@@ -9,7 +9,7 @@ import UIKit
 
 final class PokedexDetailAssembly {
     static func build(delegate: PokedexDetailPresenterDelegate?,
-                      model: PokedexDetailModel,
+                      model: PokedexDetailModel.DisplayModel,
                       networkManager: PokedexManagerProtocol) -> UIViewController {
         let controller = PokedexDetailViewController()
 

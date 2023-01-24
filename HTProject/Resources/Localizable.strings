@@ -18,3 +18,10 @@
 
 "Pokedex.Error.Title" = "Error";
 "Pokedex.Error.Button.Title" = "Ok";
+
+"Pokedex.Detail.Like.Alert.Title" = "Like";
+"Pokedex.Detail.Like.Alert.Message" = "Sorry, in progress too";
+"Pokedex.Detail.Like.Alert.Button.Title" = "Ok";
+
+"Pokedex.Detail.Error.Title" = "Error";
+"Pokedex.Detail.Error.Button.Title" = "Ok";

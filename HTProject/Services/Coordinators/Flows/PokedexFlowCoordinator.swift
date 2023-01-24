@@ -24,8 +24,8 @@ final class PokedexFlowCoordinator: CoordinatorProtocol {
         showPokedexScene()
     }
 
-    func startDetail(pokemonId: Int) {
-        showPokedexDetailScene(pokemonId: pokemonId)
+    func startDetail(pokemon: PokedexModel.PokemonItem) {
+        showPokedexDetailScene(pokemon: pokemon)
     }
 }
 
@@ -36,8 +36,13 @@ private extension PokedexFlowCoordinator {
         navigationController.setViewControllers([controller], animated: true)
     }
 
-    func showPokedexDetailScene(pokemonId: Int) {
-        let model = PokedexDetailModel(pokemonId: pokemonId)
+    func showPokedexDetailScene(pokemon: PokedexModel.PokemonItem) {
+        let model = PokedexDetailModel.DisplayModel(id: pokemon.id,
+                                                    number: pokemon.number,
+                                                    name: pokemon.name,
+                                                    tags: pokemon.tags,
+                                                    image: pokemon.image,
+                                                    type: pokemon.type)
         let networkManager = PokedexManager.shared
         let controller = PokedexDetailAssembly.build(delegate: self, model: model, networkManager: networkManager)
         navigationController.pushViewController(controller, animated: true)
@@ -49,8 +54,8 @@ extension PokedexFlowCoordinator: PokedexPresenterDelegate {
         delegate?.userPerformedInit(coordinator: self)
     }
 
-    func userNeedsToDetail(pokemonId: Int) {
-        startDetail(pokemonId: pokemonId)
+    func userNeedsToDetail(pokemon: PokedexModel.PokemonItem) {
+        startDetail(pokemon: pokemon)
     }
 }
 

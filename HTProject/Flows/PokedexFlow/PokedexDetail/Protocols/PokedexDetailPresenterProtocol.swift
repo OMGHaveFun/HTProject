@@ -10,4 +10,5 @@ protocol PokedexDetailPresenterProtocol: AnyObject {
     func onViewWillAppear()
 
     func handleBackTap()
+    func handleLikeTap()
 }

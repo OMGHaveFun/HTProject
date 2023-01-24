@@ -11,6 +11,7 @@ enum NavigationButtonType {
     case back
     case backLight
     case menu
+    case like
 
     var backgroundColor: UIColor {
         switch self {
@@ -30,7 +31,7 @@ enum NavigationButtonType {
         switch self {
         case .back, .menu:
             return .black
-        case .backLight:
+        case .backLight, .like:
             return .white
         }
     }
@@ -41,7 +42,11 @@ enum NavigationButtonType {
             return UIImage(systemName: "arrow.left",
                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
         case .menu:
-            return UIImage(systemName: "line.3.horizontal")
+            return UIImage(systemName: "line.3.horizontal",
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
+        case .like:
+            return UIImage(systemName: "heart",
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
         }
     }
 
@@ -51,7 +56,11 @@ enum NavigationButtonType {
             return UIImage(systemName: "arrow.left",
                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
         case .menu:
-            return UIImage(systemName: "line.3.horizontal")
+            return UIImage(systemName: "line.3.horizontal",
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
+        case .like:
+            return UIImage(systemName: "heart",
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
         }
     }
 }

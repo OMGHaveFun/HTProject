@@ -9,7 +9,7 @@ import Foundation
 
 protocol PokedexPresenterDelegate: AnyObject {
     func userNeedsToInit()
-    func userNeedsToDetail(pokemonId: Int)
+    func userNeedsToDetail(pokemon: PokedexModel.PokemonItem)
 }
 
 final class PokedexPresenter {
@@ -60,7 +60,7 @@ private extension PokedexPresenter {
             var items: [PokedexModel.PokemonItem] = []
             responses.forEach { item in
                 let tags: [String] = item.types.compactMap({ $0.type?.name })
-                let type = PokedexModel.PokemonType.withLabel(tags[0]) ?? .unknown
+                let type = PokemonType.withLabel(tags[0]) ?? .unknown
                 let pokemonItem = PokedexModel.PokemonItem(id: item.id,
                                                            number: item.id.indexString(),
                                                            name: item.name,
@@ -107,7 +107,7 @@ extension PokedexPresenter: PokedexPresenterProtocol {
         view?.display(state: .alert(model))
     }
 
-    func handlePokemonTap() {
-        delegate?.userNeedsToDetail(pokemonId: 1)
+    func handlePokemonTap(_ pokemon: PokedexModel.PokemonItem) {
+        delegate?.userNeedsToDetail(pokemon: pokemon)
     }
 }

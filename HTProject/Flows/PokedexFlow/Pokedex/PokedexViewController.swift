@@ -210,7 +210,8 @@ extension PokedexViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension PokedexViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.handlePokemonTap()
+        let pokemon = data[indexPath.row]
+        presenter?.handlePokemonTap(pokemon)
     }
 }
 

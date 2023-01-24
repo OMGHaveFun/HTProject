@@ -46,6 +46,8 @@
 		A2D0C75229801BB300AF6A17 /* Strings+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C75129801BB300AF6A17 /* Strings+Init.swift */; };
 		A2D0C7542980200900AF6A17 /* TextHelper+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C7532980200900AF6A17 /* TextHelper+Init.swift */; };
 		A2D0C757298024FF00AF6A17 /* Int+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C756298024FF00AF6A17 /* Int+String.swift */; };
+		A2D0C75C298073AF00AF6A17 /* TextHelper+PokedexDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C75B298073AF00AF6A17 /* TextHelper+PokedexDetail.swift */; };
+		A2D0C75E2980853000AF6A17 /* String+PokedexDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C75D2980853000AF6A17 /* String+PokedexDetail.swift */; };
 		A2D45B4F2976B54B0050CE7C /* InitPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D45B4E2976B54B0050CE7C /* InitPresenterProtocol.swift */; };
 		A2D45B512976B5590050CE7C /* InitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D45B502976B5590050CE7C /* InitViewProtocol.swift */; };
 		A2D45B532976B5660050CE7C /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D45B522976B5660050CE7C /* InitViewController.swift */; };
@@ -114,6 +116,8 @@
 		A2D0C75129801BB300AF6A17 /* Strings+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Init.swift"; sourceTree = "<group>"; };
 		A2D0C7532980200900AF6A17 /* TextHelper+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextHelper+Init.swift"; sourceTree = "<group>"; };
 		A2D0C756298024FF00AF6A17 /* Int+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+String.swift"; sourceTree = "<group>"; };
+		A2D0C75B298073AF00AF6A17 /* TextHelper+PokedexDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextHelper+PokedexDetail.swift"; sourceTree = "<group>"; };
+		A2D0C75D2980853000AF6A17 /* String+PokedexDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PokedexDetail.swift"; sourceTree = "<group>"; };
 		A2D45B4E2976B54B0050CE7C /* InitPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitPresenterProtocol.swift; sourceTree = "<group>"; };
 		A2D45B502976B5590050CE7C /* InitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewProtocol.swift; sourceTree = "<group>"; };
 		A2D45B522976B5660050CE7C /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
@@ -272,10 +276,8 @@
 		A22598892975747A00FAC5F4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A2D0C75A2980739000AF6A17 /* TextHelper */,
 				A225988A2975748C00FAC5F4 /* MagicLayout.swift */,
-				A2D0C74A2980073D00AF6A17 /* TextHelper.swift */,
-				A2D0C74C2980075D00AF6A17 /* TextHelper+Pokedex.swift */,
-				A2D0C7532980200900AF6A17 /* TextHelper+Init.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -343,6 +345,7 @@
 			children = (
 				A2C1371B2977E61D00252558 /* Strings+Pokedex.swift */,
 				A2D0C75129801BB300AF6A17 /* Strings+Init.swift */,
+				A2D0C75D2980853000AF6A17 /* String+PokedexDetail.swift */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -393,6 +396,17 @@
 				A2D0C756298024FF00AF6A17 /* Int+String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A2D0C75A2980739000AF6A17 /* TextHelper */ = {
+			isa = PBXGroup;
+			children = (
+				A2D0C74A2980073D00AF6A17 /* TextHelper.swift */,
+				A2D0C7532980200900AF6A17 /* TextHelper+Init.swift */,
+				A2D0C74C2980075D00AF6A17 /* TextHelper+Pokedex.swift */,
+				A2D0C75B298073AF00AF6A17 /* TextHelper+PokedexDetail.swift */,
+			);
+			path = TextHelper;
 			sourceTree = "<group>";
 		};
 		A2D45B4C2976B4950050CE7C /* InitFlow */ = {
@@ -629,9 +643,11 @@
 				A2DE4F2329774FF700222772 /* PokedexManagerProtocol.swift in Sources */,
 				A22598582975660400FAC5F4 /* AppDelegate.swift in Sources */,
 				A2D0C73E297FFB6400AF6A17 /* TagViewItem.swift in Sources */,
+				A2D0C75E2980853000AF6A17 /* String+PokedexDetail.swift in Sources */,
 				A2D0C73C297FFB2800AF6A17 /* TagView+Model.swift in Sources */,
 				A225987A29756FC600FAC5F4 /* PokedexPresenter.swift in Sources */,
 				A225988B2975748C00FAC5F4 /* MagicLayout.swift in Sources */,
+				A2D0C75C298073AF00AF6A17 /* TextHelper+PokedexDetail.swift in Sources */,
 				A2DE4F262977526A00222772 /* PokemonListDTO.swift in Sources */,
 				A225987C29756FD000FAC5F4 /* PokedexAssembly.swift in Sources */,
 				A2D0C749298006DC00AF6A17 /* Fonts.swift in Sources */,

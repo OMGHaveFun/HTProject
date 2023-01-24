@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum TagViewItemType {
+    case small
+    case medium
+}
+
 final class TagViewItem: UIView {
     private enum Constants {
         static let width: CGFloat = 80.0

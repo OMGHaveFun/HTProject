@@ -39,7 +39,7 @@ enum NavigationButtonType {
         switch self {
         case .back, .backLight:
             return UIImage(systemName: "arrow.left",
-                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .light))
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
         case .menu:
             return UIImage(systemName: "line.3.horizontal")
         }
@@ -49,7 +49,7 @@ enum NavigationButtonType {
         switch self {
         case .back, .backLight:
             return UIImage(systemName: "arrow.left",
-                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .light))
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium))
         case .menu:
             return UIImage(systemName: "line.3.horizontal")
         }

@@ -32,6 +32,20 @@
 		A2C1371C2977E61D00252558 /* Strings+Pokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1371B2977E61D00252558 /* Strings+Pokedex.swift */; };
 		A2CF291F2975AB5000A24F9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF291E2975AB5000A24F9C /* Constants.swift */; };
 		A2CF29222975AEA300A24F9C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2CF29212975AEA200A24F9C /* Colors.xcassets */; };
+		A2D0C73A297FFB1E00AF6A17 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C739297FFB1E00AF6A17 /* TagView.swift */; };
+		A2D0C73C297FFB2800AF6A17 /* TagView+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C73B297FFB2800AF6A17 /* TagView+Model.swift */; };
+		A2D0C73E297FFB6400AF6A17 /* TagViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C73D297FFB6400AF6A17 /* TagViewItem.swift */; };
+		A2D0C740297FFB7100AF6A17 /* TagViewItem+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C73F297FFB7100AF6A17 /* TagViewItem+Model.swift */; };
+		A2D0C745298005DB00AF6A17 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A2D0C742298005DB00AF6A17 /* SF-Pro-Text-Medium.otf */; };
+		A2D0C746298005DB00AF6A17 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A2D0C743298005DB00AF6A17 /* SF-Pro-Text-Regular.otf */; };
+		A2D0C747298005DB00AF6A17 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A2D0C744298005DB00AF6A17 /* SF-Pro-Text-Bold.otf */; };
+		A2D0C749298006DC00AF6A17 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C748298006DC00AF6A17 /* Fonts.swift */; };
+		A2D0C74B2980073D00AF6A17 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C74A2980073D00AF6A17 /* TextHelper.swift */; };
+		A2D0C74D2980075D00AF6A17 /* TextHelper+Pokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C74C2980075D00AF6A17 /* TextHelper+Pokedex.swift */; };
+		A2D0C75029801A5100AF6A17 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D0C74F29801A5100AF6A17 /* Images.xcassets */; };
+		A2D0C75229801BB300AF6A17 /* Strings+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C75129801BB300AF6A17 /* Strings+Init.swift */; };
+		A2D0C7542980200900AF6A17 /* TextHelper+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C7532980200900AF6A17 /* TextHelper+Init.swift */; };
+		A2D0C757298024FF00AF6A17 /* Int+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D0C756298024FF00AF6A17 /* Int+String.swift */; };
 		A2D45B4F2976B54B0050CE7C /* InitPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D45B4E2976B54B0050CE7C /* InitPresenterProtocol.swift */; };
 		A2D45B512976B5590050CE7C /* InitViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D45B502976B5590050CE7C /* InitViewProtocol.swift */; };
 		A2D45B532976B5660050CE7C /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D45B522976B5660050CE7C /* InitViewController.swift */; };
@@ -86,6 +100,20 @@
 		A2C1371B2977E61D00252558 /* Strings+Pokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Pokedex.swift"; sourceTree = "<group>"; };
 		A2CF291E2975AB5000A24F9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A2CF29212975AEA200A24F9C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A2D0C739297FFB1E00AF6A17 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		A2D0C73B297FFB2800AF6A17 /* TagView+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagView+Model.swift"; sourceTree = "<group>"; };
+		A2D0C73D297FFB6400AF6A17 /* TagViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewItem.swift; sourceTree = "<group>"; };
+		A2D0C73F297FFB7100AF6A17 /* TagViewItem+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagViewItem+Model.swift"; sourceTree = "<group>"; };
+		A2D0C742298005DB00AF6A17 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		A2D0C743298005DB00AF6A17 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		A2D0C744298005DB00AF6A17 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		A2D0C748298006DC00AF6A17 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		A2D0C74A2980073D00AF6A17 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
+		A2D0C74C2980075D00AF6A17 /* TextHelper+Pokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextHelper+Pokedex.swift"; sourceTree = "<group>"; };
+		A2D0C74F29801A5100AF6A17 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A2D0C75129801BB300AF6A17 /* Strings+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Init.swift"; sourceTree = "<group>"; };
+		A2D0C7532980200900AF6A17 /* TextHelper+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextHelper+Init.swift"; sourceTree = "<group>"; };
+		A2D0C756298024FF00AF6A17 /* Int+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+String.swift"; sourceTree = "<group>"; };
 		A2D45B4E2976B54B0050CE7C /* InitPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitPresenterProtocol.swift; sourceTree = "<group>"; };
 		A2D45B502976B5590050CE7C /* InitViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewProtocol.swift; sourceTree = "<group>"; };
 		A2D45B522976B5660050CE7C /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +175,7 @@
 				A225986B29756EA600FAC5F4 /* Application */,
 				A2CF291D2975AB3F00A24F9C /* Constants */,
 				A2259882297571F800FAC5F4 /* Controllers */,
+				A2D0C755298024E600AF6A17 /* Extensions */,
 				A225987329756F6C00FAC5F4 /* Flows */,
 				A22598892975747A00FAC5F4 /* Helpers */,
 				A2D45B672976C1900050CE7C /* Resources */,
@@ -244,6 +273,9 @@
 			isa = PBXGroup;
 			children = (
 				A225988A2975748C00FAC5F4 /* MagicLayout.swift */,
+				A2D0C74A2980073D00AF6A17 /* TextHelper.swift */,
+				A2D0C74C2980075D00AF6A17 /* TextHelper+Pokedex.swift */,
+				A2D0C7532980200900AF6A17 /* TextHelper+Init.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -290,6 +322,7 @@
 		A2259892297577D100FAC5F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2D0C738297FFB0700AF6A17 /* Tags */,
 				A2D45B6D2976D1960050CE7C /* Buttons */,
 				A2259893297577D800FAC5F4 /* Cells */,
 			);
@@ -309,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				A2C1371B2977E61D00252558 /* Strings+Pokedex.swift */,
+				A2D0C75129801BB300AF6A17 /* Strings+Init.swift */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -325,9 +359,40 @@
 		A2CF29202975AE3100A24F9C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A2D0C741298005B300AF6A17 /* Fonts */,
 				A2CF29212975AEA200A24F9C /* Colors.xcassets */,
+				A2D0C74F29801A5100AF6A17 /* Images.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A2D0C738297FFB0700AF6A17 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				A2D0C739297FFB1E00AF6A17 /* TagView.swift */,
+				A2D0C73B297FFB2800AF6A17 /* TagView+Model.swift */,
+				A2D0C73D297FFB6400AF6A17 /* TagViewItem.swift */,
+				A2D0C73F297FFB7100AF6A17 /* TagViewItem+Model.swift */,
+			);
+			name = Tags;
+			sourceTree = "<group>";
+		};
+		A2D0C741298005B300AF6A17 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A2D0C744298005DB00AF6A17 /* SF-Pro-Text-Bold.otf */,
+				A2D0C742298005DB00AF6A17 /* SF-Pro-Text-Medium.otf */,
+				A2D0C743298005DB00AF6A17 /* SF-Pro-Text-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A2D0C755298024E600AF6A17 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A2D0C756298024FF00AF6A17 /* Int+String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A2D45B4C2976B4950050CE7C /* InitFlow */ = {
@@ -397,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				A2D45B6B2976CC3D0050CE7C /* Colors.swift */,
+				A2D0C748298006DC00AF6A17 /* Fonts.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -512,11 +578,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D0C75029801A5100AF6A17 /* Images.xcassets in Resources */,
 				A2C137192977E52400252558 /* Localizable.strings in Resources */,
 				A22598642975660600FAC5F4 /* LaunchScreen.storyboard in Resources */,
+				A2D0C747298005DB00AF6A17 /* SF-Pro-Text-Bold.otf in Resources */,
+				A2D0C745298005DB00AF6A17 /* SF-Pro-Text-Medium.otf in Resources */,
 				A2D45B692976C24D0050CE7C /* LaunchScreenAssets.xcassets in Resources */,
 				A2CF29222975AEA300A24F9C /* Colors.xcassets in Resources */,
 				A22598612975660600FAC5F4 /* Assets.xcassets in Resources */,
+				A2D0C746298005DB00AF6A17 /* SF-Pro-Text-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,13 +628,17 @@
 				A2D45B6F2976D1A80050CE7C /* RoundButton.swift in Sources */,
 				A2DE4F2329774FF700222772 /* PokedexManagerProtocol.swift in Sources */,
 				A22598582975660400FAC5F4 /* AppDelegate.swift in Sources */,
+				A2D0C73E297FFB6400AF6A17 /* TagViewItem.swift in Sources */,
+				A2D0C73C297FFB2800AF6A17 /* TagView+Model.swift in Sources */,
 				A225987A29756FC600FAC5F4 /* PokedexPresenter.swift in Sources */,
 				A225988B2975748C00FAC5F4 /* MagicLayout.swift in Sources */,
 				A2DE4F262977526A00222772 /* PokemonListDTO.swift in Sources */,
 				A225987C29756FD000FAC5F4 /* PokedexAssembly.swift in Sources */,
+				A2D0C749298006DC00AF6A17 /* Fonts.swift in Sources */,
 				A2D45B602976BE2A0050CE7C /* PokedexDetailViewProtocol.swift in Sources */,
 				A2DE4F172977305E00222772 /* PokedexModel.swift in Sources */,
 				A2D45B5A2976BBD90050CE7C /* PokedexFlowCoordinator.swift in Sources */,
+				A2D0C74B2980073D00AF6A17 /* TextHelper.swift in Sources */,
 				A2D45B4F2976B54B0050CE7C /* InitPresenterProtocol.swift in Sources */,
 				A2DE4F192977306B00222772 /* PokedexDetailModel.swift in Sources */,
 				A2D45B712976D22C0050CE7C /* PokedexButton.swift in Sources */,
@@ -577,18 +651,24 @@
 				A2D45B622976BE350050CE7C /* PokedexDetailViewController.swift in Sources */,
 				A2D45B572976B57B0050CE7C /* InitAssembly.swift in Sources */,
 				A2D45B642976BE490050CE7C /* PokedexDetailPresenter.swift in Sources */,
+				A2D0C75229801BB300AF6A17 /* Strings+Init.swift in Sources */,
 				A225987129756F2C00FAC5F4 /* AppCoordinator.swift in Sources */,
+				A2D0C740297FFB7100AF6A17 /* TagViewItem+Model.swift in Sources */,
 				A22598842975720800FAC5F4 /* BaseViewController.swift in Sources */,
 				A2D45B6C2976CC3D0050CE7C /* Colors.swift in Sources */,
 				A22598862975730900FAC5F4 /* SceneDelegateService.swift in Sources */,
 				A22598902975771000FAC5F4 /* PokemonListResponse.swift in Sources */,
+				A2D0C7542980200900AF6A17 /* TextHelper+Init.swift in Sources */,
 				A2C137172977D70400252558 /* PokemonSpeciesResponse.swift in Sources */,
+				A2D0C757298024FF00AF6A17 /* Int+String.swift in Sources */,
+				A2D0C73A297FFB1E00AF6A17 /* TagView.swift in Sources */,
 				A225986F29756F1200FAC5F4 /* CoordinatorProtocol.swift in Sources */,
 				A22598882975732600FAC5F4 /* BaseNavigationController.swift in Sources */,
 				A225987F2975702100FAC5F4 /* PokedexPresenterProtocol.swift in Sources */,
 				A2C137152977D6F200252558 /* PokemonResponse.swift in Sources */,
 				A2DE4F11297717F700222772 /* NavigationButton.swift in Sources */,
 				A225985A2975660400FAC5F4 /* SceneDelegate.swift in Sources */,
+				A2D0C74D2980075D00AF6A17 /* TextHelper+Pokedex.swift in Sources */,
 				A225987829756FB300FAC5F4 /* PokedexViewController.swift in Sources */,
 				A2259895297577EC00FAC5F4 /* PokedexCell.swift in Sources */,
 			);

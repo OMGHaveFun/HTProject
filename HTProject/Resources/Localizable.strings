@@ -6,9 +6,15 @@
   
 */
 
+// MARK: - Init Flow
+"Init.Button.Title" = "Pokedex";
+
 // MARK: - Pokedex Flow
 "Pokedex.Title" = "Pokedex";
 
 "Pokedex.Menu.Alert.Title" = "Menu";
 "Pokedex.Menu.Alert.Message" = "In progress... ";
 "Pokedex.Menu.Alert.Button.Title" = "Ok";
+
+"Pokedex.Error.Title" = "Error";
+"Pokedex.Error.Button.Title" = "Ok";

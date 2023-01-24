@@ -15,7 +15,7 @@ final class PokedexManager: PokedexManagerProtocol {
     private static let loggerFormatter = NetworkLoggerPlugin.Configuration.Formatter(requestData: loggerData)
     private static let loggerPlugin = NetworkLoggerPlugin(configuration: .init(formatter: loggerFormatter, logOptions: .verbose))
 
-    var provider = MoyaProvider<PokedexTarget>(plugins: [loggerPlugin])
+    var provider = MoyaProvider<PokedexTarget>(plugins: [] /*[loggerPlugin]*/)
 
     func fetchPokemonList(model: Encodable, completion: @escaping (Result<PokemonListResponse, Error>) -> Void) {
         request(target: .pokemonList(model: model), completion: completion)
@@ -23,6 +23,10 @@ final class PokedexManager: PokedexManagerProtocol {
 
     func fetchPokemon(pokemonId: Int, completion: @escaping (Result<PokemonResponse, Error>) -> Void) {
         request(target: .pokemon(pokemonId: pokemonId), completion: completion)
+    }
+
+    func fetchPokemonByLink(_ link: String, completion: @escaping (Result<PokemonResponse, Error>) -> Void) {
+        request(target: .pokemonByLink(link), completion: completion)
     }
 
     func fetchPokemonSpecies(pokemonId: Int, completion: @escaping (Result<PokemonSpeciesResponse, Error>) -> Void) {
@@ -47,7 +51,9 @@ private extension PokedexManager {
             switch result {
             case let .success(response):
                 do {
-                    let results = try JSONDecoder().decode(T.self, from: response.data)
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let results = try decoder.decode(T.self, from: response.data)
                     completion(.success(results))
                 } catch let error {
                     completion(.failure(error))

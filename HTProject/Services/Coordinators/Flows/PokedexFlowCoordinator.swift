@@ -31,12 +31,8 @@ final class PokedexFlowCoordinator: CoordinatorProtocol {
 
 private extension PokedexFlowCoordinator {
     func showPokedexScene() {
-        let alertModel = PokedexAlertModel(title: PokedexStrings.Alert.title.string(),
-                                           message: PokedexStrings.Alert.message.string(),
-                                           buttonTitle: PokedexStrings.Alert.buttonTitle.string())
-        let model = PokedexModel(title: PokedexStrings.title.string(), alert: alertModel)
         let networkManager = PokedexManager.shared
-        let controller = PokedexAssembly.build(delegate: self, model: model, networkManager: networkManager)
+        let controller = PokedexAssembly.build(delegate: self, networkManager: networkManager)
         navigationController.setViewControllers([controller], animated: true)
     }
 

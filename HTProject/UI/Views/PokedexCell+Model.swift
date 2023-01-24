@@ -7,7 +7,7 @@
 
 extension PokedexCell {
     struct Model {
-        let item: PokemonListItemResponse
+        let item: PokedexModel.PokemonItem
         var callbackAction: ((Model) -> Void)?
     }
 }

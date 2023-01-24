@@ -33,4 +33,18 @@ enum PokedexStrings {
             }
         }
     }
+
+    enum Error {
+        case title
+        case buttonTitle
+
+        func string() -> String {
+            switch self {
+            case .title:
+                return NSLocalizedString("Pokedex.Error.Title", comment: "")
+            case .buttonTitle:
+                return NSLocalizedString("Pokedex.Error.Button.Title", comment: "")
+            }
+        }
+    }
 }

@@ -13,9 +13,20 @@ struct PokemonResponse: Decodable {
     let weight: Int
     let height: Int
     let sprites: PokemonSpritesResponse
+    let types: [PokemonTypesResponse]
 }
 
 struct PokemonSpritesResponse: Decodable {
     let backDefault: String?
     let frontDefault: String?
+}
+
+struct PokemonTypesResponse: Decodable {
+    let slot: Int?
+    let type: PokemonTypeResponse?
+}
+
+struct PokemonTypeResponse: Decodable {
+    let name: String?
+    let url: String?
 }

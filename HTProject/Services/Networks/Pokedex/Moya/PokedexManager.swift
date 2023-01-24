@@ -15,7 +15,7 @@ final class PokedexManager: PokedexManagerProtocol {
     private static let loggerFormatter = NetworkLoggerPlugin.Configuration.Formatter(requestData: loggerData)
     private static let loggerPlugin = NetworkLoggerPlugin(configuration: .init(formatter: loggerFormatter, logOptions: .verbose))
 
-    var provider = MoyaProvider<PokedexTarget>(plugins: [] /*[loggerPlugin]*/)
+    var provider = MoyaProvider<PokedexTarget>(plugins: [loggerPlugin])
 
     func fetchPokemonList(model: Encodable, completion: @escaping (Result<PokemonListResponse, Error>) -> Void) {
         request(target: .pokemonList(model: model), completion: completion)

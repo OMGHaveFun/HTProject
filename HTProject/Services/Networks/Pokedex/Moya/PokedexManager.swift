@@ -8,16 +8,14 @@
 import Foundation
 import Moya
 
-final class PokedexManager: PokedexManagerProtocol {
-    static let shared = PokedexManager()
-
+struct PokedexManager: PokedexManagerProtocol {
     private static let loggerData: (Any) -> String = { _ in return "formatted request body" }
     private static let loggerFormatter = NetworkLoggerPlugin.Configuration.Formatter(requestData: loggerData)
     private static let loggerPlugin = NetworkLoggerPlugin(configuration: .init(formatter: loggerFormatter, logOptions: .verbose))
 
     var provider = MoyaProvider<PokedexTarget>(plugins: [loggerPlugin])
 
-    func fetchPokemonList(model: Encodable, completion: @escaping (Result<PokemonListResponse, Error>) -> Void) {
+    func fetchPokemonList(model: PokemonListDTO, completion: @escaping (Result<PokemonListResponse, Error>) -> Void) {
         request(target: .pokemonList(model: model), completion: completion)
     }
 

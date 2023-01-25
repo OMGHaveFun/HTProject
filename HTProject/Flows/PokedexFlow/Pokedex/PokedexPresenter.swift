@@ -90,10 +90,10 @@ extension PokedexPresenter: PokedexPresenterProtocol {
     func onViewDidLoad() {
         let model = PokedexModel.DisplayModel(title: PokedexStrings.title.string())
         view?.display(state: .display(model))
+        fetchPokemonList()
     }
 
     func onViewWillAppear() {
-        fetchPokemonList()
     }
 
     func handleBackTap() {

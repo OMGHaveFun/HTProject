@@ -8,7 +8,7 @@
 import UIKit
 
 final class InitAssembly {
-    static func build(delegate: InitPresenterDelegate?, model: InitModel) -> UIViewController {
+    static func make(delegate: InitPresenterDelegate?, model: InitModel) -> UIViewController {
         let controller = InitViewController()
 
         let presenter = InitPresenter(view: controller, model: model)

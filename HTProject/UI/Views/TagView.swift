@@ -44,7 +44,7 @@ final class TagView: UIView {
         rowViews.removeAll(keepingCapacity: true)
 
         var currentRow = 0
-        var currentRowView: UIView!
+        var currentRowView: UIView = UIView()
         var currentRowTagCount = 0
         var currentRowWidth: CGFloat = 0
         for (index, tagView) in tagViews.enumerated() {

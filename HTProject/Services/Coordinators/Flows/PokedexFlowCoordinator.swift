@@ -32,7 +32,7 @@ final class PokedexFlowCoordinator: CoordinatorProtocol {
 private extension PokedexFlowCoordinator {
     func showPokedexScene() {
         let networkManager = PokedexManager()
-        let controller = PokedexAssembly.build(delegate: self, networkManager: networkManager)
+        let controller = PokedexAssembly.make(delegate: self, networkManager: networkManager)
         navigationController.setViewControllers([controller], animated: true)
     }
 
@@ -44,7 +44,7 @@ private extension PokedexFlowCoordinator {
                                                     image: pokemon.image,
                                                     type: pokemon.type)
         let networkManager = PokedexManager()
-        let controller = PokedexDetailAssembly.build(delegate: self, model: model, networkManager: networkManager)
+        let controller = PokedexDetailAssembly.make(delegate: self, model: model, networkManager: networkManager)
         navigationController.pushViewController(controller, animated: true)
     }
 }

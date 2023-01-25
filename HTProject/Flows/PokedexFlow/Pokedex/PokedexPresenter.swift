@@ -78,6 +78,10 @@ private extension PokedexPresenter {
         })
     }
 
+    func mapPokemons(_ pokemons: [PokemonResponse]) {
+
+    }
+
     func checkError(error: Error) {
         let model = PokedexModel.ErrorModel(title: PokedexStrings.Error.title.string(),
                                             message: error.localizedDescription,

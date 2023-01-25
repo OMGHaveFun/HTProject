@@ -8,7 +8,7 @@
 import UIKit
 
 final class PokedexAssembly {
-    static func build(delegate: PokedexPresenterDelegate?,
+    static func make(delegate: PokedexPresenterDelegate?,
                       networkManager: PokedexManagerProtocol) -> UIViewController {
         let controller = PokedexViewController()
 

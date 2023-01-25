@@ -18,7 +18,7 @@ final class InitViewController: BaseViewController {
 
     private let pokedexButton = PokedexButton()
 
-    var presenter: InitPresenterProtocol?
+    private var presenter: InitPresenterProtocol?
 
     // MARK: Lifecycle
     override func viewDidLoad() {

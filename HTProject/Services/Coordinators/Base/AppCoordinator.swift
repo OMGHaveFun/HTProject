@@ -34,7 +34,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
 private extension AppCoordinator {
     func showInitFlow() {
         let model = InitModel()
-        let controller = InitAssembly.build(delegate: self, model: model)
+        let controller = InitAssembly.make(delegate: self, model: model)
         navigationController.pushViewController(controller, animated: true)
     }
 }

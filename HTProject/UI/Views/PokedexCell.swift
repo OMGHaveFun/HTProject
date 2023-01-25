@@ -44,7 +44,11 @@ final class PokedexCell: UICollectionViewCell {
         return view
     }()
 
-    var model: Model? {
+    func setModel(_ model: Model?) {
+        self.model = model
+    }
+
+    private var model: Model? {
         didSet {
             configureUI()
         }
@@ -90,5 +94,11 @@ final class PokedexCell: UICollectionViewCell {
 
         imageViewBackground.image = UIImage(named: "logo")
         imageView.sd_setImage(with: URL(string: model.item.image), placeholderImage: nil)
+    }
+}
+
+extension PokedexCell: ReusableView {
+    static var reuseIdentifier: String {
+        return String(describing: self)
     }
 }

@@ -72,6 +72,7 @@
 		A2DE4F2129774FE800222772 /* PokedexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DE4F2029774FE800222772 /* PokedexManager.swift */; };
 		A2DE4F2329774FF700222772 /* PokedexManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DE4F2229774FF700222772 /* PokedexManagerProtocol.swift */; };
 		A2DE4F262977526A00222772 /* PokemonListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DE4F252977526A00222772 /* PokemonListDTO.swift */; };
+		A2FAA7C029813C82001D27C0 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FAA7BF29813C82001D27C0 /* ReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +141,7 @@
 		A2DE4F2029774FE800222772 /* PokedexManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexManager.swift; sourceTree = "<group>"; };
 		A2DE4F2229774FF700222772 /* PokedexManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexManagerProtocol.swift; sourceTree = "<group>"; };
 		A2DE4F252977526A00222772 /* PokemonListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListDTO.swift; sourceTree = "<group>"; };
+		A2FAA7BF29813C82001D27C0 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +323,7 @@
 		A2259892297577D100FAC5F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2FAA7BE29813C74001D27C0 /* Protocols */,
 				A2D0C738297FFB0700AF6A17 /* Tags */,
 				A2D45B6D2976D1960050CE7C /* Buttons */,
 				A2259893297577D800FAC5F4 /* Cells */,
@@ -522,6 +525,14 @@
 			path = Moya;
 			sourceTree = "<group>";
 		};
+		A2FAA7BE29813C74001D27C0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A2FAA7BF29813C82001D27C0 /* ReusableView.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -655,6 +666,7 @@
 				A2D45B4F2976B54B0050CE7C /* InitPresenterProtocol.swift in Sources */,
 				A2DE4F192977306B00222772 /* PokedexDetailModel.swift in Sources */,
 				A2D45B712976D22C0050CE7C /* PokedexButton.swift in Sources */,
+				A2FAA7C029813C82001D27C0 /* ReusableView.swift in Sources */,
 				A2DE4F132977180E00222772 /* NavigationButtonType.swift in Sources */,
 				A2DE4F2129774FE800222772 /* PokedexManager.swift in Sources */,
 				A2DE4F0F29770A8700222772 /* InitModel.swift in Sources */,

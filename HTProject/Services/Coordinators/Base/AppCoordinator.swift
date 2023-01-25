@@ -12,11 +12,8 @@ protocol AppCoordinatorProtocol: CoordinatorProtocol {
 }
 
 final class AppCoordinator: AppCoordinatorProtocol {
-    // MARK: Properties
     var childCoordinators: [CoordinatorProtocol] = []
     let navigationController: UINavigationController
-
-    // MARK: Public methods
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -26,17 +23,19 @@ final class AppCoordinator: AppCoordinatorProtocol {
         showInitFlow()
     }
 
-    private func showInitFlow() {
-        let model = InitModel()
-        let controller = InitAssembly.build(delegate: self, model: model)
-        navigationController.pushViewController(controller, animated: true)
-    }
-
     func showPokedexFlow() {
         let pokedexFlowCoordinator = PokedexFlowCoordinator(navigationController: navigationController)
         pokedexFlowCoordinator.delegate = self
         addChildCoordinator(pokedexFlowCoordinator)
         pokedexFlowCoordinator.start()
+    }
+}
+
+private extension AppCoordinator {
+    func showInitFlow() {
+        let model = InitModel()
+        let controller = InitAssembly.build(delegate: self, model: model)
+        navigationController.pushViewController(controller, animated: true)
     }
 }
 

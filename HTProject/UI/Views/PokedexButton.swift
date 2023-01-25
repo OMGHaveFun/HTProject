@@ -39,12 +39,9 @@ final class PokedexButton: RoundButton {
         layer.borderColor = Colors.elementsPrimaryBlack.cgColor
 
         backgroundColor = .clear
-//
-//        let title = TextHelper.profileButtonTitle(text: Title.Button.profile.string(), color: Colors.textWhite)
-//        setAttributedTitle(title, for: .normal)
 
-        setTitle("Pokedex", for: .normal)
-        setTitleColor(Colors.elementsPrimaryBlack, for: .normal)
+        let title = TextHelper.initButtonTitle(text: InitStrings.buttonTitle.string())
+        setAttributedTitle(title, for: .normal)
 
         addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }

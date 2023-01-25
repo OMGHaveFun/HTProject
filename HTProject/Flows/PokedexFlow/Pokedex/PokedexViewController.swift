@@ -11,6 +11,10 @@ final class PokedexViewController: BaseViewController {
     private enum Constants {
         static let offsets: CGFloat = 20.0
         static let cellHeight: CGFloat = 120.0
+
+        static let menuImageBackgroundSize: CGFloat = 200.0
+        static let menuImageBackgroundTopOffset: CGFloat = 30.0
+        static let menuImageBackgroundRightOffset: CGFloat = 72.0
     }
 
     private let backButton = NavigationButton()
@@ -24,6 +28,15 @@ final class PokedexViewController: BaseViewController {
     private let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        return view
+    }()
+
+    private let imageViewBackground: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "logo")
+        view.contentMode = .scaleAspectFill
+        view.tintColor = .black.withAlphaComponent(0.05)
+        view.clipsToBounds = true
         return view
     }()
 
@@ -41,7 +54,7 @@ final class PokedexViewController: BaseViewController {
         return collectionView
     }()
 
-    private var data: [PokemonListItemResponse] = []
+    private var data: [PokedexModel.PokemonItem] = []
 
     var presenter: PokedexPresenterProtocol?
 
@@ -74,11 +87,18 @@ final class PokedexViewController: BaseViewController {
     }
 }
 
+// MARK: - Private - Configure
 private extension PokedexViewController {
     func configureUI() {
         showNavigationBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
+
+        view.addSubview(imageViewBackground.prepareForAutoLayout())
+        imageViewBackground.heightAnchor ~= Constants.menuImageBackgroundSize
+        imageViewBackground.widthAnchor ~= Constants.menuImageBackgroundSize
+        imageViewBackground.topAnchor ~= view.topAnchor - Constants.menuImageBackgroundTopOffset
+        imageViewBackground.rightAnchor ~= view.rightAnchor + Constants.menuImageBackgroundRightOffset
 
         view.addSubview(contentView.prepareForAutoLayout())
         contentView.pinEdgesToSuperviewEdges(excluding: .top)
@@ -115,17 +135,30 @@ private extension PokedexViewController {
     }
 }
 
-extension PokedexViewController: PokedexViewProtocol {
-    func display(model: PokedexModel) {
-        titleLabel.text = model.title
+// MARK: - Private - Display
+private extension PokedexViewController {
+    func display(_ model: PokedexModel.DisplayModel) {
+        titleLabel.attributedText = TextHelper.pokedexTitle(text: model.title)
     }
 
-    func displayFeed(_ feed: [PokemonListItemResponse]) {
-        data = feed
+    // TODO: display shimmers
+    func displayShimmers(_ model: PokedexModel.ShimmersModel) {
+        if model.isOn {} else {}
+    }
+
+    func displayData(_ model: PokedexModel.FetchDataModel) {
+        data = model.item.items
         collectionView.reloadData()
     }
 
-    func displayMenuAlert(model: PokedexAlertModel) {
+    func displayMenuAlert(_ model: PokedexModel.AlertModel) {
+        let alert = UIAlertController(title: model.title, message: model.message, preferredStyle: .alert)
+        let action = UIAlertAction(title: model.buttonTitle, style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+
+    func displayError(_ model: PokedexModel.ErrorModel) {
         let alert = UIAlertController(title: model.title, message: model.message, preferredStyle: .alert)
         let action = UIAlertAction(title: model.buttonTitle, style: .default)
         alert.addAction(action)
@@ -133,6 +166,24 @@ extension PokedexViewController: PokedexViewProtocol {
     }
 }
 
+extension PokedexViewController: PokedexViewProtocol {
+    func display(state: PokedexModel.State) {
+        switch state {
+        case .display(let model):
+            display(model)
+        case .shimmers(let model):
+            displayShimmers(model)
+        case .data(let model):
+            displayData(model)
+        case .alert(let model):
+            displayMenuAlert(model)
+        case .error(let model):
+            displayError(model)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
 extension PokedexViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -156,9 +207,11 @@ extension PokedexViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension PokedexViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.handlePokemonTap()
+        let pokemon = data[indexPath.row]
+        presenter?.handlePokemonTap(pokemon)
     }
 }
 

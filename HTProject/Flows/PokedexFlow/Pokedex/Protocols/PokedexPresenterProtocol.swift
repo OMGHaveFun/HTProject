@@ -11,5 +11,5 @@ protocol PokedexPresenterProtocol: AnyObject {
 
     func handleBackTap()
     func handleMenuTap()
-    func handlePokemonTap()
+    func handlePokemonTap(_ pokemon: PokedexModel.PokemonItem)
 }

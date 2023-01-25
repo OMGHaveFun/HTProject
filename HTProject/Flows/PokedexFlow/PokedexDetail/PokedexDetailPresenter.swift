@@ -14,10 +14,10 @@ protocol PokedexDetailPresenterDelegate: AnyObject {
 final class PokedexDetailPresenter {
     weak var delegate: PokedexDetailPresenterDelegate?
     weak var view: PokedexDetailViewProtocol?
-    private var model: PokedexDetailModel
+    private var model: PokedexDetailModel.DisplayModel
     private let networkManager: PokedexManagerProtocol
 
-    init(view: PokedexDetailViewProtocol?, model: PokedexDetailModel, networkManager: PokedexManagerProtocol) {
+    init(view: PokedexDetailViewProtocol?, model: PokedexDetailModel.DisplayModel, networkManager: PokedexManagerProtocol) {
         self.view = view
         self.model = model
         self.networkManager = networkManager
@@ -25,14 +25,11 @@ final class PokedexDetailPresenter {
 }
 
 private extension PokedexDetailPresenter {
-    func fetchPokemon() {
-        networkManager.fetchPokemon(pokemonId: model.pokemonId) { [weak self] result in
-            guard let self else { return }
-
+    func fetchPokemonSpecies() {
+        networkManager.fetchPokemonSpecies(pokemonId: model.id) { result in
             switch result {
             case .success(let response):
                 print("Response: ", response)
-                self.view?.display(response)
             case .failure(let error):
                 print(error)
             }
@@ -42,14 +39,21 @@ private extension PokedexDetailPresenter {
 
 extension PokedexDetailPresenter: PokedexDetailPresenterProtocol {
     func onViewDidLoad() {
-        view?.display(model: model)
+        view?.display(state: .display(model))
     }
 
     func onViewWillAppear() {
-        fetchPokemon()
+        fetchPokemonSpecies()
     }
 
     func handleBackTap() {
         delegate?.userNeedsBack()
+    }
+
+    func handleLikeTap() {
+        let model = PokedexDetailModel.AlertModel(title: PokedexDetailStrings.Alert.title.string(),
+                                            message: PokedexDetailStrings.Alert.message.string(),
+                                            buttonTitle: PokedexDetailStrings.Alert.buttonTitle.string())
+        view?.display(state: .alert(model))
     }
 }

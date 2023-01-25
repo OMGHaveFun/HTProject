@@ -24,25 +24,26 @@ final class PokedexFlowCoordinator: CoordinatorProtocol {
         showPokedexScene()
     }
 
-    func startDetail(pokemonId: Int) {
-        showPokedexDetailScene(pokemonId: pokemonId)
+    func startDetail(pokemon: PokedexModel.PokemonItem) {
+        showPokedexDetailScene(pokemon: pokemon)
     }
 }
 
 private extension PokedexFlowCoordinator {
     func showPokedexScene() {
-        let alertModel = PokedexAlertModel(title: PokedexStrings.Alert.title.string(),
-                                           message: PokedexStrings.Alert.message.string(),
-                                           buttonTitle: PokedexStrings.Alert.buttonTitle.string())
-        let model = PokedexModel(title: PokedexStrings.title.string(), alert: alertModel)
-        let networkManager = PokedexManager.shared
-        let controller = PokedexAssembly.build(delegate: self, model: model, networkManager: networkManager)
+        let networkManager = PokedexManager()
+        let controller = PokedexAssembly.build(delegate: self, networkManager: networkManager)
         navigationController.setViewControllers([controller], animated: true)
     }
 
-    func showPokedexDetailScene(pokemonId: Int) {
-        let model = PokedexDetailModel(pokemonId: pokemonId)
-        let networkManager = PokedexManager.shared
+    func showPokedexDetailScene(pokemon: PokedexModel.PokemonItem) {
+        let model = PokedexDetailModel.DisplayModel(id: pokemon.id,
+                                                    number: pokemon.number,
+                                                    name: pokemon.name,
+                                                    tags: pokemon.tags,
+                                                    image: pokemon.image,
+                                                    type: pokemon.type)
+        let networkManager = PokedexManager()
         let controller = PokedexDetailAssembly.build(delegate: self, model: model, networkManager: networkManager)
         navigationController.pushViewController(controller, animated: true)
     }
@@ -53,8 +54,8 @@ extension PokedexFlowCoordinator: PokedexPresenterDelegate {
         delegate?.userPerformedInit(coordinator: self)
     }
 
-    func userNeedsToDetail(pokemonId: Int) {
-        startDetail(pokemonId: pokemonId)
+    func userNeedsToDetail(pokemon: PokedexModel.PokemonItem) {
+        startDetail(pokemon: pokemon)
     }
 }
 

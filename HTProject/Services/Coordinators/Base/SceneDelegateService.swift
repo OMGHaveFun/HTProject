@@ -16,7 +16,7 @@ final class SceneDelegateService {
     }
 
     func setupCoordinator() {
-        window.rootViewController = BaseNavigationController()
+        window.rootViewController = UINavigationController()
 
         guard let rootNavigationController = window.rootViewController as? UINavigationController else {
             fatalError("Root viewController must be inherited from UINavigationController")

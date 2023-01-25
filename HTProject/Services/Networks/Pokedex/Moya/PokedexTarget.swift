@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum PokedexTarget {
-    case pokemonList(model: Encodable)
+    case pokemonList(model: PokemonListDTO)
     case pokemon(pokemonId: Int)
     case pokemonByLink(_ link: String)
     case pokemonSpecies(pokemonId: Int)
@@ -54,7 +54,6 @@ extension PokedexTarget: TargetType {
     var task: Task {
         switch self {
         case .pokemonList(let model):
-            guard let model = model as? PokemonListDTO else { return .requestPlain }
             return .requestParameters(parameters: ["offset": model.offset,
                                                    "limit": model.limit],
                                       encoding: URLEncoding(destination: .queryString, arrayEncoding: .noBrackets))
